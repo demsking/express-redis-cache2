@@ -14,14 +14,6 @@ Express too.*
 npm install express-redis-cache2 redis@3
 ```
 
-`express-redis-cache2` ships with a CLI utility you can invoke from the
-console. In order to use it, install `express-redis-cache2` globally (might
-require super user privileges):
-
-```sh
-npm install -g express-redis-cache2 redis@3
-```
-
 ## Usage
 
 Just use it as a middleware in the stack of the route you want to cache.
