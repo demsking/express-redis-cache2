@@ -15,16 +15,6 @@ stages:
   - build
   - publish
 
-code quality:
-  stage: test
-  script:
-    - yarn install --ignore-scripts
-    - yarn add --dev eslint eslint-formatter-gitlab
-    - npx eslint --format gitlab .
-  artifacts:
-    reports:
-      codequality: gl-codequality.json
-
 tests:
   stage: test
   image: docker
@@ -47,7 +37,6 @@ dependencies:
 audit:
   stage: security
   needs:
-    - code quality
     - tests
     - dependencies
   script:
@@ -56,7 +45,6 @@ audit:
 sast:
   stage: security
   needs:
-    - code quality
     - tests
     - dependencies
 
