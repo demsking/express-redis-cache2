@@ -67,9 +67,9 @@
       cache.expire.should.equal(cache.FOREVER);
     });
 
-    it ( 'should have a property client which is a Commander', function () {
+    it ( 'should have a property client which is a RedisClient', function () {
       cache.should.have.property('client').which.is.an.Object();
-      cache.client.constructor.name.should.equal('Commander');
+      cache.client.constructor.name.should.equal('RedisClient');
     });
 
   });

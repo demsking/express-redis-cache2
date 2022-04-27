@@ -11,10 +11,12 @@
   var host      =   process.env.EX_RE_CA_HOST || 'localhost';
   var port      =   process.env.EX_RE_CA_PORT || 6379;
 
+  var client    = require('redis').createClient(port, host);
+
   var cache     =   require('../')({
     prefix: prefix,
-    host: host,
-    port: port
+    expire: 2,
+    client,
   });
 
   describe ( 'del', function () {

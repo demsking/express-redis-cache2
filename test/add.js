@@ -18,11 +18,12 @@
   var _body     =   'test1 test1 test1';
   var _type     =   'text/plain';
 
+  var client    = require('redis').createClient(port, host);
+
   var cache     =   require('../')({
     prefix: prefix,
-    host: host,
-    port: port,
-    expire: 2
+    expire: 2,
+    client,
   });
 
   describe ( 'add', function () {
