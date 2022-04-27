@@ -25,6 +25,7 @@ dependencies:
   stage: test
   script:
     - yarn install
+    - yarn remove redis # make sure to no check redis as we are only compatible with v3x
     - yarn outdated
   allow_failure: true
 
