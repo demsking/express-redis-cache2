@@ -7,7 +7,8 @@
     "express-redis-cache2": "bin/express-redis-cache.js"
   },
   "scripts": {
-    "test": "mocha --exit --check-leaks -R nyan test"
+    "test": "mocha --exit --check-leaks -R nyan test",
+    "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down"
   },
   "repository": {
     "type": "git",

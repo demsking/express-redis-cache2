@@ -520,7 +520,7 @@ We use Mocha and Should for the tests.
 **Run tests with Docker Compose**
 
 ```sh
-./run-tests
+yarn run-tests
 ```
 
 **Run tests locally**
