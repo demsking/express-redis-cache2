@@ -23,6 +23,7 @@ tests:
   script:
     - apk add --no-cache docker-compose yarn
     - yarn install
+    - yarn add redis@4
     - yarn run-tests
 
 dependencies:
