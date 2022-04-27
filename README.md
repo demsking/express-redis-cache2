@@ -11,7 +11,7 @@ Express too.*
 ## Install
 
 ```sh
-npm install express-redis-cache2
+npm install express-redis-cache2 redis@4
 ```
 
 `express-redis-cache2` ships with a CLI utility you can invoke from the
@@ -19,7 +19,7 @@ console. In order to use it, install `express-redis-cache2` globally (might
 require super user privileges):
 
 ```sh
-npm install -g express-redis-cache2
+npm install -g express-redis-cache2 redis@4
 ```
 
 ## Usage
