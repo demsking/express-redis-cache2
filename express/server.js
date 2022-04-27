@@ -7,7 +7,7 @@ var path = require('path');
 var express       = require('express');
 var app           = express();
 
-app.set('port', process.env.PORT || 3027);
+app.set('port', process.env.EX_EXPRESS_PORT || 3027);
 
 /* ======== cache  ======== */
 var cache_options = {
@@ -82,7 +82,7 @@ app.all('/',
 var server = require('http').createServer(app);
 
 server.listen(app.get('port'), function () {
-  console.log('express-redis-cache test server started on port ' + app.get('port'));
+  console.log('express-redis-cache2 test server started on port ' + app.get('port'));
 });
 
 server.on('error', function (error) {

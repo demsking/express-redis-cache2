@@ -7,7 +7,7 @@
     "express-redis-cache2": "bin/express-redis-cache.js"
   },
   "scripts": {
-    "test": "mocha --exit --check-leaks -R nyan test",
+    "test": "jest",
     "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down"
   },
   "repository": {
@@ -75,10 +75,12 @@
   "devDependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "jest": "^28.0.2",
     "method-override": "3.0.0",
     "mocha": "9.2.2",
     "moment": "^2.22.2",
     "redis": "^3.1.2",
+    "redis-mock": "^0.56.3",
     "request": "^2.87.0",
     "should": "^13.2.1"
   },

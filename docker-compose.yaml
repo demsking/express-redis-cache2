@@ -1,19 +1,28 @@
 version: '3.3'
 
 services:
-  redis:
-    image: redis:6.0.8-alpine
+  express:
+    image: node:lts-alpine
+    volumes:
+      - .:/src
+    working_dir: /src
+    environment:
+      EX_RE_CA_HOST: &redis-host redis
+      EX_EXPRESS_PORT: &express-port 3027
     ports:
-      - 6379:6379
+      - 3027:3027
+    command: node express/server.js
 
   tests:
     image: node:lts-alpine
     container_name: express-redis-cache2-tests
     depends_on:
-      - redis
+      - express
     volumes:
       - .:/src
     working_dir: /src
     environment:
-      EX_RE_CA_HOST: redis
+      EX_EXPRESS_HOST: express
+      EX_EXPRESS_PORT: *express-port
+      EX_RE_CA_HOST: *redis-host
     command: yarn test
