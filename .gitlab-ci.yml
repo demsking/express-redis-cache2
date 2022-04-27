@@ -24,7 +24,6 @@ tests:
     - apk add --no-cache docker-compose yarn
     - yarn install
     - yarn add redis@4
-    - ls -la .
     - ./run-tests.sh
 
 dependencies:

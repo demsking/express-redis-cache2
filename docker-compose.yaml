@@ -7,7 +7,6 @@ services:
   tests:
     image: node:lts-alpine
     container_name: express-redis-cache2-tests
-    tty: true
     depends_on:
       - redis
     volumes:
