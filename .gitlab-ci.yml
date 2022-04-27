@@ -31,7 +31,7 @@ tests:
   services:
     - docker:dind
   script:
-    - apk add --no-cache docker-compose
+    - apk add --no-cache docker-compose yarn
     - yarn install
     - docker-compose up -d
     - docker-compose logs -f tests
