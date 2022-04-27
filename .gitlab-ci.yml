@@ -23,7 +23,7 @@ tests:
   script:
     - apk add --no-cache docker-compose yarn
     - yarn install
-    - yarn run-tests
+    - ./run-tests.sh
 
 dependencies:
   stage: test

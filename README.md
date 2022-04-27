@@ -513,17 +513,19 @@ node example.js
 5. [Install Docker](https://docs.docker.com/get-docker/) and
    [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Test
+## Tests
 
-We use Mocha and Should for the tests. You can invoke tests like this:
+We use Mocha and Should for the tests.
+
+**Run tests with Docker Compose**
 
 ```sh
-yarn test
+./run-tests
 ```
 
-**Test environments**
+**Run tests locally**
 
-You can specify the following environments before running your tests:
+To run tests locally, define the following environments before:
 
 ```sh
 export EX_RE_CA_HOST="";
@@ -531,10 +533,10 @@ export EX_RE_CA_PORT="";
 export EX_RE_CA_PREFIX="";
 ```
 
-**Run tests with Docker Compose**
+Then, invoke tests like this:
 
 ```sh
-yarn run-tests
+yarn test
 ```
 
 ## Contributors
