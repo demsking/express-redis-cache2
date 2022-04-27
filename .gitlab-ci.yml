@@ -6,7 +6,7 @@
 # Note that environment variables can be set in several places
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 
-image: node:16.1.0-alpine3.13
+image: node:16.13.1-alpine3.13
 
 stages:
   - test
