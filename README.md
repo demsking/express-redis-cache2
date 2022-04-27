@@ -510,30 +510,13 @@ node example.js
    The next time your launch your terminal and enter the top-level of your
    project, `direnv` will check for changes.
 
-5. [Install Docker](https://docs.docker.com/get-docker/) and
-   [Docker Compose](https://docs.docker.com/compose/install/)
+5. Install dependencies
+
+   ```sh
+   yarn install
+   ```
 
 ## Tests
-
-We use Mocha and Should for the tests.
-
-**Run tests with Docker Compose**
-
-```sh
-yarn run-tests
-```
-
-**Run tests locally**
-
-To run tests locally, define the following environments before:
-
-```sh
-export EX_RE_CA_HOST="";
-export EX_RE_CA_PORT="";
-export EX_RE_CA_PREFIX="";
-```
-
-Then, invoke tests like this:
 
 ```sh
 yarn test
@@ -548,6 +531,7 @@ yarn test
 - [benmcmeen](https://github.com/benmcmeen)
 - [pwmckenna](https://github.com/pwmckenna)
 - [mattberther](https://github.com/mattberther)
+- [ramanpreetnara](https://github.com/ramanpreetnara)
 - [ramanpreetnara](https://github.com/ramanpreetnara)
 
 ## License

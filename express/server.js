@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 
-var path = require('path');
-
 /* ======== express  ======== */
 
 var express       = require('express');
 var app           = express();
-
-app.set('port', process.env.EX_EXPRESS_PORT || 3027);
 
 /* ======== cache  ======== */
 var cache_options = {
@@ -69,22 +65,11 @@ app.all('/delete_never_expire',
 
     }
 );
+
 app.all('/',
-
   cache.route(),
-
 	function (req, res) {
   	res.send('Now is ' + new Date());
 	});
 
-/* ======== server  ======== */
-
-var server = require('http').createServer(app);
-
-server.listen(app.get('port'), function () {
-  console.log('express-redis-cache2 test server started on port ' + app.get('port'));
-});
-
-server.on('error', function (error) {
-  console.log({ 'server error': error });
-});
+module.exports = app;
