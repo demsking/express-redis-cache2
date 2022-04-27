@@ -6,25 +6,12 @@ var should    =   require('should');
 var supertest =   require('supertest');
 var util      =   require('util');
 
-var prefix    =   process.env.EX_RE_CA_PREFIX || 'erct:';
-var host      =   process.env.EX_RE_CA_HOST || 'localhost';
-var port      =   process.env.EX_RE_CA_PORT || 6379;
-var expressHost =   process.env.EX_EXPRESS_HOST || 'localhost';
-
 var app       = supertest(require('../express/server.js'));
-
-var spawn,
-    home;
 
 describe ( 'test with small express server', () => {
 
-  it ( 'should have a / route', () => {
-    app.get('/').expect(200);
-  });
-
-  it ( 'should not have /foobar route', () => {
-    app.get("/foobar").expect(404);
-  });
+  it ( 'should have a / route', () => app.get('/').expect(200));
+  it ( 'should not have /foobar route', () => app.get("/foobar").expect(404));
 
   it ( '/1sec route should return json with a timestamp property', () => {
     return app.get('/1sec')

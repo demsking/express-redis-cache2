@@ -8,6 +8,7 @@ express/
 .eslintignore
 .eslintrc.yaml
 .gitattributes
+jest.*
 *.nix
 *.yml
 *.tgz

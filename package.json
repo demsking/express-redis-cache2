@@ -7,7 +7,7 @@
     "express-redis-cache2": "bin/express-redis-cache.js"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down"
   },
   "repository": {
@@ -81,7 +81,6 @@
     "moment": "^2.22.2",
     "redis": "^3.1.2",
     "redis-mock": "^0.56.3",
-    "request": "^2.87.0",
     "should": "^13.2.1",
     "supertest": "^6.2.3"
   },
