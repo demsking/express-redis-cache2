@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  redis:
+    image: redis:6.0.8-alpine
+
+  tests:
+    image: node:lts-alpine
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      EX_RE_CA_HOST: redis
+    command: yarn test
