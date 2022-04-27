@@ -48,7 +48,7 @@ audit:
   stage: security
   needs:
     - code quality
-    - unit tests
+    - tests
     - dependencies
   script:
     - yarn audit --production
@@ -57,7 +57,7 @@ sast:
   stage: security
   needs:
     - code quality
-    - unit tests
+    - tests
     - dependencies
 
 package:
