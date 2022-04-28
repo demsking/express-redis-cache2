@@ -104,17 +104,17 @@ entry such as:
 ```js
 app.get('/user/:userid',
   // middleware to define cache name
-  function (req, res, next) {
+  (req, res, next) => {
     // set cache name
     res.express_redis_cache_name = 'user-' + req.params.userid;
     next();
-    },
+  },
 
   // cache middleware
   cache.route(),
 
   // content middleware
-  function (req, res) {
+  (req, res) => {
     res.render('user');
   }
 );
@@ -128,16 +128,18 @@ by using `res.use_express_redis_cache`:
 ```js
 app.get('/user',
   // middleware to decide if using cache
-  function (req, res, next) {
+  (req, res, next) => {
     // Use only cache if user not signed in
     res.use_express_redis_cache = ! req.signedCookies.user;
 
     next();
   }.
 
+  // cache middleware
   cache.route(), // this will be skipped if user is signed in
 
-  function (req, res) {
+  // content middleware
+  (req, res) => {
     res.render('user');
   }
 );
