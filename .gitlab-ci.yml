@@ -35,6 +35,7 @@ audit:
     - tests
     - dependencies
   script:
+    - yarn remove gimtoc # make sure to no check gimtoc as it's a development dependency
     - yarn audit --production
 
 sast:
