@@ -1,6 +1,10 @@
 CHANGE LOG
 ==========
 
+# v2.0.0-beta3
+
+This release fixes typing file `index.d.ts`.
+
 # v2.0.0-beta2
 
 This release adds typing file `index.d.ts`.
