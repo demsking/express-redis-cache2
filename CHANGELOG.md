@@ -1,9 +1,14 @@
 CHANGE LOG
 ==========
 
+# 2.0.0-beta5
+
+This release fixes the constructor function.
+
 # v2.0.0-beta4
 
 This release improves documentation.
+
 # v2.0.0-beta3
 
 This release fixes typing file `index.d.ts`.
