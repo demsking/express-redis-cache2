@@ -19,20 +19,9 @@ Express too.*
 
 - [Install](#install)
 - [Usage](#usage)
-  * [Redis Unavailability](#redis-unavailability)
-- [Name of the cache entry](#name-of-the-cache-entry)
-- [Conditional caching](#conditional-caching)
-- [Prefix](#prefix)
-- [Expiration](#expiration)
-- [Content Type](#content-type)
 - [Events](#events)
-  * [error](#error)
-  * [message](#message)
-  * [connected](#connected)
-  * [disconnected](#disconnected)
 - [The Entry Model](#the-entry-model)
 - [The module](#the-module)
-- [The constructor](#the-constructor)
 - [API](#api)
   * [`get` Get cache entries](#get-get-cache-entries)
   * [`add` Add a new cache entry](#add-add-a-new-cache-entry)
@@ -71,7 +60,7 @@ app.get('/',
 This will check if there is a cache entry for this route. If not. it will
 cache it and serve the cache next time route is called.
 
-### Redis Unavailability
+**Redis Unavailability**
 
 Should the redis become unavailable, the `express-redis-cache2` object will
 emit errors but will not crash the app. Express.js requests during this time
@@ -80,7 +69,7 @@ will be bypass cache and will return fresh data.
 Once the redis recovers, the caching will begin working again. See example
 code in the `/example` folder.
 
-## Name of the cache entry
+**Name of the cache entry**
 
 By default, the cache entry name will be `default prefix`:`name` where name's
 value defaults to [req.originalUrl](http://expressjs.com/4x/api.html#req.originalUrl).
@@ -129,7 +118,7 @@ app.get('/user/:userid',
 );
 ```
 
-## Conditional caching
+**Conditional caching**
 
 You can also use a previous middleware to set whether or not to use the cache
 by using `res.use_express_redis_cache`:
@@ -152,7 +141,7 @@ app.get('/user',
 );
 ```
 
-## Prefix
+**Prefix**
 
 All entry names are prepended by a prefix. Prefix is set when calling the
 Constructor.
@@ -189,7 +178,7 @@ app.get('/index.html',
   (req, res) => { ... });
 ```
 
-## Expiration
+**Expiration**
 
 Unless specified otherwise when calling the Constructor, cache entries don't
 expire. You can specify a default lifetime when calling the constructor:
@@ -239,7 +228,7 @@ app.get('/index.html',
 
 You can also specify
 
-## Content Type
+**Content Type**
 
 You can use `express-redis-cache2` to cache HTML pages, CSS stylesheets, JSON
 objects, anything really. Content-types are saved along the cache body and are
@@ -256,7 +245,7 @@ app.get('/index.html',
 
 The module emits the following events:
 
-### error
+**error**
 
 You can catch errors by adding a listener:
 
@@ -266,7 +255,7 @@ cache.on('error', function (error) {
 });
 ```
 
-### message
+**message**
 
 `express-redis-cache2` logs some information at runtime. You can access it
 like this:
@@ -277,7 +266,7 @@ cache.on('message', function (message) {
 });
 ```
 
-### connected
+**connected**
 
 Emitted when the client is connected (or re-connected) to Redis server
 
@@ -287,7 +276,7 @@ cache.on('connected', () => {
 });
 ```
 
-### disconnected
+**disconnected**
 
 Emitted when the client is disconnected from Redis server. When (and if) it
 reconnects, it will emit a 'connected' event again
@@ -327,7 +316,7 @@ const cache = require('express-redis-cache2')({ /* ... */ });
 const cache = new (require('express-redis-cache2/lib/ExpressRedisCache'))({ /* ... */ });
 ```
 
-## The constructor
+**The constructor**
 
 As stated above, call the function exposed by the module to create a new
 instance of `ExpressRedisCache`,
