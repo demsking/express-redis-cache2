@@ -3,6 +3,7 @@
   "version": "2.0.0-beta1",
   "description": "A module to make Express interact with Redis (create, get, delete). You can automatically cache all your most popular routes in Redis.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest --detectOpenHandles",
     "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down",
@@ -10,7 +11,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rv-kip/express-redis-cache.git"
+    "url": "https://gitlab.com/demsking/express-redis-cache2.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/demsking/express-redis-cache2/issues"
   },
   "author": {
     "name": "Francois Vespa",
