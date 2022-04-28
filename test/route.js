@@ -19,6 +19,8 @@
     expire: 2,
   });
 
+  cache.connected = true;
+
   var _name     =   'test-route' + process.pid;
   var _expire   =   60;
 

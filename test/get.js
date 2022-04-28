@@ -23,6 +23,8 @@
     expire: 2,
   });
 
+  cache.connected = true;
+
   describe ( 'get', function () {
 
     var error, results;

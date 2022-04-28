@@ -18,6 +18,8 @@
     expire: 2,
   });
 
+  cache.connected = true;
+
   describe ( 'del', function () {
 
     var error, deletions;

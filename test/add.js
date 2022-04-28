@@ -25,6 +25,8 @@
     expire: 2,
   });
 
+  cache.connected = true;
+
   describe ( 'add', function () {
 
     var error, name, entry;

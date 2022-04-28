@@ -17,6 +17,8 @@ var cache         = require('../')({
   client: require('redis').createClient(options.port, options.host),
 });
 
+cache.connected = true;
+
 var moment        = require('moment');
 
 cache.on('error', function (error) {

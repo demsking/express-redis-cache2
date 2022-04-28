@@ -45,10 +45,10 @@ Just use it as a middleware in the stack of the route you want to cache.
 
 ```js
 const redis = require('redis');
-const createRedisCache = require('express-redis-cache2');
+const createExpressRedisCache = require('express-redis-cache2');
 
 const client = redis.createClient();
-const cache = createRedisCache({ client });
+const cache = createExpressRedisCache({ client });
 const app = express();
 
 // replace
@@ -154,11 +154,11 @@ Constructor.
 
 ```js
 const redis = require('redis');
-const createRedisCache = require('express-redis-cache2');
+const createExpressRedisCache = require('express-redis-cache2');
 
 const client = redis.createClient();
 // Set default prefix to "test". All entry names will begin by "test:"
-const cache = createRedisCache({
+const cache = createExpressRedisCache({
   client,
   prefix: 'test',
 });
@@ -193,11 +193,11 @@ expire. You can specify a default lifetime when calling the constructor:
 
 ```js
 const redis = require('redis');
-const createRedisCache = require('express-redis-cache2');
+const createExpressRedisCache = require('express-redis-cache2');
 
 const client = redis.createClient();
 // Set default lifetime to 60 seconds for all entries
-const cache = createRedisCache({ client, expire: 60 });
+const cache = createExpressRedisCache({ client, expire: 60 });
 ```
 
 You can overwrite the default lifetime when calling `route()`:
