@@ -75,7 +75,7 @@ declare namespace expressRedisCache {
 
   interface Options {
     client: redis.RedisClient;
-    expire?: number;
+    expire?: ExpireOption;
     prefix?: string;
   }
 
