@@ -15,6 +15,33 @@ Express too.*
 >
 > Please see [CHANGELOG.md](https://gitlab.com/demsking/express-redis-cache2/blob/main/CHANGELOG.md).
 
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+  * [Redis Unavailability](#redis-unavailability)
+- [Name of the cache entry](#name-of-the-cache-entry)
+- [Conditional caching](#conditional-caching)
+- [Prefix](#prefix)
+- [Expiration](#expiration)
+- [Content Type](#content-type)
+- [Events](#events)
+  * [error](#error)
+  * [message](#message)
+  * [connected](#connected)
+  * [disconnected](#disconnected)
+- [The Entry Model](#the-entry-model)
+- [The module](#the-module)
+- [The constructor](#the-constructor)
+- [API](#api)
+  * [`get` Get cache entries](#get-get-cache-entries)
+  * [`add` Add a new cache entry](#add-add-a-new-cache-entry)
+  * [`del` Delete a cache entry](#del-delete-a-cache-entry)
+  * [`size` Get cache size for all entries](#size-get-cache-size-for-all-entries)
+- [Example Code](#example-code)
+- [Development Setup](#development-setup)
+- [License](#license)
+
 ## Install
 
 ```sh
@@ -26,53 +53,26 @@ npm install express-redis-cache2 redis@3
 Just use it as a middleware in the stack of the route you want to cache.
 
 ```js
+const redis = require('redis');
+const client = redis.createClient(port, host);
+const cache = require('express-redis-cache2')({ client });
 const app = express();
-const cache = require('express-redis-cache2')();
 
 // replace
 app.get('/',
-  function (req, res)  { ... });
+  (req, res) => { ... });
 
 // by
 app.get('/',
   cache.route(),
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 This will check if there is a cache entry for this route. If not. it will
 cache it and serve the cache next time route is called.
 
-## Redis connection info
-
-By default, `express-redis-cache2` connects to Redis using `localhost` as host
-and nothing as port (using Redis default port `6379`). To use different port
-or host, declare them when you require `express-redis-cache2`. If your Redis
-server requires password, use the `auth_pass` option.
-
-```js
-const cache = require('express-redis-cache2')({
-  host: String, port: Number, auth_pass: REDIS_PASSWORD
-});
-```
-
-You can pass a Redis client as well:
-
-```js
-require('express-redis-cache2')({
-  client: require('redis').createClient(),
-})
-```
-
-You can have several clients if you want to serve from more than one Redis
-server:
-
-```js
-const cache = require('express-redis-cache2');
-const client1 = cache({ host: "...", port: "..." });
-const client2 = cache({ host: "...", port: "..." });
-// ...
-```
 ### Redis Unavailability
+
 Should the redis become unavailable, the `express-redis-cache2` object will
 emit errors but will not crash the app. Express.js requests during this time
 will be bypass cache and will return fresh data.
@@ -88,7 +88,7 @@ value defaults to [req.originalUrl](http://expressjs.com/4x/api.html#req.origina
 ```js
 app.get('/',
   cache.route(), // cache entry name is `cache.prefix + "/"`
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 You can specify a custom name like this:
@@ -96,7 +96,7 @@ You can specify a custom name like this:
 ```js
 app.get('/',
   cache.route('home'), // cache entry name is now `cache.prefix + "home"`
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 You can also use the object syntax:
@@ -104,7 +104,7 @@ You can also use the object syntax:
 ```js
 app.get('/',
   cache.route({ name: 'home' }), // cache entry name is `cache.prefix + "home"`
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 Also, you can use `res.express_redis_cache_name` to specify the name of the
@@ -158,8 +158,11 @@ All entry names are prepended by a prefix. Prefix is set when calling the
 Constructor.
 
 ```js
+const redis = require('redis');
+const client = redis.createClient(port, host);
 // Set default prefix to "test". All entry names will begin by "test:"
 const cache = require('express-redis-cache2')({
+  client,
   prefix: 'test',
 });
 ```
@@ -175,7 +178,7 @@ You can pass a custom prefix when calling `route()`:
 ```js
 app.get('/index.html',
   cache.route('index', { prefix: 'test'  }), // force prefix to be "test", entry name will be "test:index"
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 You can also choose not to use prefixes:
@@ -183,7 +186,7 @@ You can also choose not to use prefixes:
 ```js
 app.get('/index.html',
   cache.route({ prefix: false  }), // no prefixing, entry name will be "/index.html"
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 ## Expiration
@@ -192,8 +195,10 @@ Unless specified otherwise when calling the Constructor, cache entries don't
 expire. You can specify a default lifetime when calling the constructor:
 
 ```js
+const redis = require('redis');
+const client = redis.createClient(port, host);
 // Set default lifetime to 60 seconds for all entries
-const cache = require('express-redis-cache2')({ expire: 60 });
+const cache = require('express-redis-cache2')({ client, expire: 60 });
 ```
 
 You can overwrite the default lifetime when calling `route()`:
@@ -201,7 +206,7 @@ You can overwrite the default lifetime when calling `route()`:
 ```js
 app.get('/index.html',
   cache.route({ expire: 5000  }), // cache entry will live 5000 seconds
-  function (req, res)  { ... });
+  (req, res) => { ... });
 
 // You can also use the number sugar syntax
 cache.route(5000);
@@ -229,7 +234,7 @@ app.get('/index.html',
       xxx: 1
     }
   }),
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 You can also specify
@@ -244,7 +249,7 @@ you can pass a custom type.
 ```js
 app.get('/index.html',
   cache.route({ type: 'text/plain'  }), // force entry type to be "text/plain"
-  function (req, res)  { ... });
+  (req, res) => { ... });
 ```
 
 ## Events
@@ -277,7 +282,7 @@ cache.on('message', function (message) {
 Emitted when the client is connected (or re-connected) to Redis server
 
 ```js
-cache.on('connected', function () {
+cache.on('connected', () => {
   // ....
 });
 ```
@@ -288,7 +293,7 @@ Emitted when the client is disconnected from Redis server. When (and if) it
 reconnects, it will emit a 'connected' event again
 
 ```js
-cache.on('disconnected', function () {
+cache.on('disconnected', () => {
   // ....
 });
 ```
@@ -296,22 +301,6 @@ cache.on('disconnected', function () {
 **Note** You can get the connexion status at any time by getting the property
 `cache.connected` which returns a boolean (true = connected, false =
 disconnected).
-
-### deprecated
-
-Warning emitted when stumbled upon a deprecated part of the code
-
-```js
-cache.on('deprecated', function (deprecated) {
-  console.log('deprecated warning', {
-      type: deprecated.type,
-      name: deprecated.name,
-      substitute: deprecated.substitute,
-      file: deprecated.file,
-      line: deprecated.line
-  });
-});
-```
 
 ## The Entry Model
 
@@ -322,7 +311,7 @@ const entry = {
   body:    String // the content of the cache
   touched: Number // last time cache was set (created or updated) as a Unix timestamp
   expire:  Number // the seconds cache entry lives (-1 if does not expire)
-  type: String // the content-type
+  type: String    // the content-type
 };
 ```
 
@@ -349,13 +338,11 @@ const cache = require('express-redis-cache2')(/** Object | Undefined */ options)
 
 Where `options` is an object that has the following properties:
 
-|   Option    |  Type         |  Default                                                                |  Description                                                |
-| ----------- | ------------- | ----------------------------------------------------------------------- |------------------------------------------------------------ |
-| **host**    | `String`      | `undefined`                                                             | Redis server host                                           |
-| **port**    | `Number`      | `undefined`                                                             | Redis server port                                           |
-| **prefix**  | `String`      | `require('express-redis-cache2/package.json').config.prefix`            | Default prefix (This will be prepended to all entry names)  |
-| **expire**  | `Number`      | `undefined`                                                             | Default life time of entries in seconds                     |
-| **client**  | `RedisClient` | `require('redis').createClient({ host: cache.host, port: cache.port })` | A Redis client                                              |
+|   Option    |  Type         |  Default                                                      |  Description                                                |
+| ----------- | ------------- | ------------------------------------------------------------- |------------------------------------------------------------ |
+| **prefix**  | `String`      | `require('express-redis-cache2/package.json').config.prefix`  | Default prefix (This will be prepended to all entry names)  |
+| **expire**  | `Number`      | `undefined`                                                   | Default life time of entries in seconds                     |
+| **client**  | `RedisClient` |                                                               | A Redis client                                              |
 
 ## API
 
@@ -428,61 +415,8 @@ You can use wildcard (*) in name.
 cache.size(/** Function ( Error, Number bytes ) */);
 ```
 
-## Command line
-
-We ship with a CLI. You can invoke it like this: `express-redis-cache2`
-
-### View cache entries
-
-```sh
-express-redis-cache2 ls
-```
-
-### Add cache entry
-
-```sh
-express-redis-cache2 add $name $body $expire --type $type
-```
-
-#### Examples
-
-```sh
-# Cache simple text
-express-redis-cache2 add "test" "This is a test";
-
-# Cache a file
-express-redis-cache2 add "home" "$(cat index.html)";
-
-# Cache a JSON object
-express-redis-cache2 add "user1:location" '{ "lat": 4.7453, "lng": -31.332 }' --type json;
-
-# Cache a text that will expire in one hour
-express-redis-cache2 add "offer" "everything 25% off for the next hour" $(( 60 * 60 ));
-```
-
-### Get single cache entry
-
-```sh
-express-redis-cache2 get $name
-# Example: express-redis-cache2 get user1:*
-# Output:
-```
-
-### Delete cache entry
-
-```sh
-express-redis-cache2 del $name
-# Example: express-redis-cache2 del user1:*
-# Output:
-```
-
-### Get total cache size
-
-```sh
-express-redis-cache2 size
-# Output:
-```
 ## Example Code
+
 Run the example to see how the caching behaves. You can kill the
 `redis-server` and the application will respond with non-cached information.
 
@@ -514,24 +448,6 @@ node example.js
    ```sh
    yarn install
    ```
-
-## Tests
-
-```sh
-yarn test
-```
-
-## Contributors
-
-- [faceair](https://github.com/faceair)
-- [barwin](https://github.com/barwin)
-- [rv-kip](https://github.com/rv-kip)
-- [amaurigabriel](https://github.com/amaurigabriel)
-- [benmcmeen](https://github.com/benmcmeen)
-- [pwmckenna](https://github.com/pwmckenna)
-- [mattberther](https://github.com/mattberther)
-- [ramanpreetnara](https://github.com/ramanpreetnara)
-- [ramanpreetnara](https://github.com/ramanpreetnara)
 
 ## License
 

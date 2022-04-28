@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down"
+    "run-tests": "yarn global add --frozen-lockfile --global-folder=node_modules redis@4 && docker-compose up -d && docker-compose logs -f tests && docker-compose down",
+    "gimtoc": "gimtoc -f README.md -s 'Table of Contents' -o README.md && git diff README.md"
   },
   "repository": {
     "type": "git",
@@ -74,6 +75,7 @@
   "devDependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "gimtoc": "^1.3.3",
     "jest": "^28.0.2",
     "method-override": "3.0.0",
     "mocha": "9.2.2",
