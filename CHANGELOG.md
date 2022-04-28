@@ -1,6 +1,9 @@
 CHANGE LOG
 ==========
 
+# v2.0.0-beta4
+
+This release improves documentation.
 # v2.0.0-beta3
 
 This release fixes typing file `index.d.ts`.
