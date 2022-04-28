@@ -8,11 +8,11 @@ Easily cache pages of your app using Express and Redis. *Could be used without
 Express too.*
 
 > **Disclaimer**: This library is a fork of [express-redis-cache](https://www.npmjs.com/package/express-redis-cache)
-  which seems to be unmaintained as the last version was released 4 years ago and contains
-  [a security vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
-
+> which seems to be unmaintained as the last version was released 4 years ago and contains
+> [a security vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
+>
 > `express-redis-cache2` uses `redis@3` as peer dependency, which fixed the [potential exponential regex in monitor mode vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
-
+>
 > Please see [CHANGELOG.md](https://gitlab.com/demsking/express-redis-cache2/blob/main/CHANGELOG.md).
 
 ## Install
