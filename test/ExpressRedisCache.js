@@ -20,7 +20,7 @@ describe ( 'Module', function () {
   });
 
   it ( 'should return a new ExpressRedisCache', function (done) {
-    cache = cache({ prefix: prefix, host: host, port: port });
+    cache = cache({ prefix: prefix, client: require('redis').createClient(port, host) });
     cache.constructor.name.should.equal('ExpressRedisCache');
     cache.on('error', function (error) {
       throw error;
@@ -37,14 +37,6 @@ describe ( 'Module', function () {
 
   it ( 'should have a property prefix which is a string and equals request prefix', function () {
     expect(cache.prefix).toBe(prefix);
-  });
-
-  it ( 'should have a property host which is a string and equals request host', function () {
-    expect(cache.host).toBe(host);
-  });
-
-  it ( 'should have a property port which is a number and equals request port', function () {
-    expect(cache.port).toBe(port);
   });
 
   it ( 'should have a property FOREVER which is a number and equals -1', function () {

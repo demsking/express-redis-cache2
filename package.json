@@ -84,8 +84,5 @@
     "redis-mock": "^0.56.3",
     "should": "^13.2.1",
     "supertest": "^6.2.3"
-  },
-  "peerDependencies": {
-    "redis": "^3.1.2"
   }
 }

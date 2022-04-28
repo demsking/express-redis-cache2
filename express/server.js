@@ -6,14 +6,17 @@ var express       = require('express');
 var app           = express();
 
 /* ======== cache  ======== */
-var cache_options = {
-  expire      : 3,
+var options = {
   host        : process.env.EX_RE_CA_HOST || 'localhost',
   port        : process.env.EX_RE_CA_PORT || 6379,
-  prefix      : process.env.EX_RE_CA_PREFIX || 'erct:'
 };
 
-var cache         = require('../')(cache_options);
+var cache         = require('../')({
+  expire: 3,
+  prefix: process.env.EX_RE_CA_PREFIX || 'erct:',
+  client: require('redis').createClient(options.port, options.host),
+});
+
 var moment        = require('moment');
 
 cache.on('error', function (error) {

@@ -1,5 +1,5 @@
 var app = require('express')(),
-    cache = require('../')({ expire: 5 });
+    cache = require('..')({ expire: 5 });
 
 cache.on('message', function(message){
   console.log("cache", message);
