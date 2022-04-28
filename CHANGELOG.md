@@ -1,6 +1,10 @@
 CHANGE LOG
 ==========
 
+# v2.0.0-beta2
+
+This release adds typing file `index.d.ts`.
+
 # v2.0.0-beta1
 
 This library is a fork of [express-redis-cache](https://www.npmjs.com/package/express-redis-cache)
