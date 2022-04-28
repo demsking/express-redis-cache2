@@ -11,9 +11,9 @@ Express too.*
   which seems to be unmaintained as the last version was released 4 years ago and contains
   [a security vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
 
-  `express-redis-cache2` uses `redis@3` as peer dependency, which fixed the [potential exponential regex in monitor mode vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
+> `express-redis-cache2` uses `redis@3` as peer dependency, which fixed the [potential exponential regex in monitor mode vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
 
-  Please see [CHANGELOG.md](https://gitlab.com/demsking/express-redis-cache2/blob/main/CHANGELOG.md).
+> Please see [CHANGELOG.md](https://gitlab.com/demsking/express-redis-cache2/blob/main/CHANGELOG.md).
 
 ## Install
 
