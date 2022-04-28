@@ -18,11 +18,11 @@
   var _body     =   'test1 test1 test1';
   var _type     =   'text/plain';
 
+  var client    =   require('redis').createClient(port, host);
   var cache     =   require('../')({
-    prefix: prefix,
-    host: host,
-    port: port,
-    expire: 2
+    client,
+    prefix,
+    expire: 2,
   });
 
   describe ( 'add', function () {
@@ -91,8 +91,6 @@
     });
 
     it ( 'should have cached the content', function (done) {
-      this.timeout(2500); // allow more time for this test
-
       setTimeout(function(){
         cache.get(_name, function (err, res) {
           should(err).not.be.ok;
@@ -101,11 +99,9 @@
           done();
         });
       }, (cache.expire - 1) * 1000);
-    });
+    }, 2500);
 
     it ( 'should expire in ' + cache.expire + ' seconds', function (done) {
-      this.timeout(2500); // allow more time for this test
-
       setTimeout(function(){
         cache.get(_name, function (err, res) {
           should(err).not.be.ok;
@@ -114,6 +110,6 @@
           done();
         });
       }, cache.expire * 1000);
-    });
+    }, 2500);
   });
 })();

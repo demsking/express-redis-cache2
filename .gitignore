@@ -1,2 +1,14 @@
-/node_modules/*
-package-lock.json
+.directory
+.DS_Store
+node_modules
+coverage
+
+.eslintcache
+
+*.log*
+
+/.nix-node
+
+*.tar.gz
+*.tsbuildinfo
+*.tgz

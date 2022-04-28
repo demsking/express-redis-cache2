@@ -11,15 +11,16 @@
   var prefix    =   process.env.EX_RE_CA_PREFIX || 'erct:';
   var host      =   process.env.EX_RE_CA_HOST || 'localhost';
   var port      =   process.env.EX_RE_CA_PORT || 6379;
-  
+
   var _name     =   'test1';
   var _body     =   'test1 test1 test1';
   var _type     =   'text/plain';
 
+  var client    =   require('redis').createClient(port, host);
   var cache     =   require('../')({
-    prefix: prefix,
-    host: host,
-    port: port
+    client,
+    prefix,
+    expire: 2,
   });
 
   describe ( 'get', function () {

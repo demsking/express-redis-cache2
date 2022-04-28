@@ -1,6 +1,20 @@
 CHANGE LOG
 ==========
 
+# v2.0.0-beta1
+
+This library is a fork of [express-redis-cache](https://www.npmjs.com/package/express-redis-cache)
+which appears to be no longer maintained as the last version was released 4 years ago and
+contains a [potential exponential regex in monitor mode vulnerability](https://github.com/advisories/GHSA-35q2-47q7-3pc3).
+
+**Breaking changes**
+
+- Use `redis` as an external dependency. This means that you now need to install `redis`
+  dependency yourself.
+- Options `options.port` and `options.host` was removed.
+- Binary `express-redis-cache` was removed.
+- `express-redis-cache2` is now compatible with `redis@3`.
+
 # Changes between 0.0.8 and 0.1.x
 
 ## Disclaimer

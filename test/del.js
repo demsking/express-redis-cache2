@@ -11,17 +11,18 @@
   var host      =   process.env.EX_RE_CA_HOST || 'localhost';
   var port      =   process.env.EX_RE_CA_PORT || 6379;
 
+  var client    =   require('redis').createClient(port, host);
   var cache     =   require('../')({
-    prefix: prefix,
-    host: host,
-    port: port
+    client,
+    prefix,
+    expire: 2,
   });
 
   describe ( 'del', function () {
 
     var error, deletions;
 
-    before(function (done) {
+    beforeEach(function (done) {
       cache.add('test-to-del', '-', done);
     });
 
@@ -55,7 +56,7 @@
 
     var error, deletions;
 
-    before(function (done) {
+    beforeEach(function (done) {
 
       var parallel = [0, 1, 2, 3 ,4, 5].map(function (num) {
 

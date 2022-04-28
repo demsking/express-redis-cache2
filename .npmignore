@@ -1,0 +1,14 @@
+node_modules/
+coverage/
+test/
+express/
+.nix-node/
+.editorconfig
+.envrc
+.eslintignore
+.eslintrc.yaml
+.gitattributes
+jest.*
+*.nix
+*.yml
+*.tgz
