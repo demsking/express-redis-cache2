@@ -1,6 +1,10 @@
 CHANGE LOG
 ==========
 
+# 2.0.0-beta7
+
+This release fixes converting of `options.expire` keys to lowercase issue.
+
 # 2.0.0-beta6
 
 This release removes deprecated `expressRedisCache` and `expressRedisCacheName`.
