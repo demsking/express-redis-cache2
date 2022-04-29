@@ -80,6 +80,19 @@
       }).should.throw();
     })
 
+    it ( 'should convert options keys to lower case', function () {
+      var options = {
+        '1XX': 1,
+        'xXx': 55
+      };
+
+      createExpirationPolicy(options);
+      expect(options).toEqual({
+        '1xx': 1,
+        'xxx': 55
+      });
+    });
+
     it ( 'should return the specified value for all status codes', function () {
       createExpirationPolicy(-1)(null, { statusCode: 200 }).should.equal(-1);
       createExpirationPolicy(1)(null, { statusCode: 300 }).should.equal(1);

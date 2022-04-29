@@ -34,7 +34,6 @@ Express too.*
 
 `express-redis-cache2` is compatible with `redis@3`.
 
-
 ```sh
 npm install express-redis-cache2 redis@3
 ```
