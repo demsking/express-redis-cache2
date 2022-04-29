@@ -20,6 +20,7 @@ tests:
   script:
     - yarn install
     - yarn test
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
 
 dependencies:
   stage: test

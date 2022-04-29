@@ -1,8 +1,8 @@
 # Express Redis Cache 2
 
 [![npm](https://img.shields.io/npm/v/express-redis-cache2.svg)](https://www.npmjs.com/package/express-redis-cache2)
-[![Build status](https://gitlab.com/demsking/express-redis-cache2/badges/master/pipeline.svg)](https://gitlab.com/demsking/express-redis-cache2/pipelines)
-[![Test coverage](https://gitlab.com/demsking/express-redis-cache2/badges/master/coverage.svg)](https://gitlab.com/demsking/express-redis-cache2/pipelines)
+[![Build status](https://gitlab.com/demsking/express-redis-cache2/badges/main/pipeline.svg)](https://gitlab.com/demsking/express-redis-cache2/pipelines)
+[![Test coverage](https://gitlab.com/demsking/express-redis-cache2/badges/main/coverage.svg)](https://gitlab.com/demsking/express-redis-cache2/pipelines)
 
 Easily cache pages of your app using Express and Redis. *Could be used without
 Express too.*
@@ -317,7 +317,7 @@ const entry = {
 ## The module
 
 The module exposes a function which instantiates a new instance of a class
-called [ExpressRedisCache](../master/index.js).
+called [ExpressRedisCache](https://gitlab.com/demsking/express-redis-cache2/blob/main/index.js).
 
 ```js
 // This
