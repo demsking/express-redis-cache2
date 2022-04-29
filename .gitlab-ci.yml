@@ -63,7 +63,7 @@ publish:
     - tags
     - triggers
   script:
-    - yarn config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
     - yarn publish
 
 include:
