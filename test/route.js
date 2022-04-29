@@ -267,7 +267,7 @@ module.exports = function (cb) {
 
             /** Emulate next **/
             var next = function () {
-              assert('There should be a response variable', !!res.expressRedisCache);
+              assert('There should be a response variable', !!res.use_express_redis_cache);
 
               res.send(entry.body);
             };

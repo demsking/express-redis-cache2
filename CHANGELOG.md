@@ -1,6 +1,10 @@
 CHANGE LOG
 ==========
 
+# 2.0.0-beta6
+
+This release removes deprecated `expressRedisCache` and `expressRedisCacheName`.
+
 # 2.0.0-beta5
 
 This release fixes the constructor function.
